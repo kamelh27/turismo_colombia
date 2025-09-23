@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import './header.css';
+@import './experience.css';
+@import './information.css';
+@import './footer.css';
+@import './page.css';
+@import './sobre_colombia.css';
+
+:root {
+    --color-primary: #306D95;
+    --color-header: #0c6169;
+    --color-secondary: #FFD700;
+    --color-link: #E0A106;
+    --color-accent: #146356;
+    --color-background: #FFF7E8;
+    --color-text: #333333;
+    --footer-background: #A05A35;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: var(--color-background);
+    background-color: var(--color-background);
+    font-family: "Inter", sans-serif;
+    display: flex;
+  flex-direction: column;
+}
+
+h1, p, h3, h2 {
+    margin: 0;
+}
+
+main {
+    flex: 1;
+}
+
+.icons {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+
+

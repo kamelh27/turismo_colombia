@@ -1,0 +1,161 @@
+.main {
+    width: 100%;
+    box-sizing: border-box;
+    flex: 1;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.experience, h1 p {
+    color: var(--color-primary);
+    
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    max-width: 700px;
+    line-height: 1.5;
+    font-weight: 500;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    margin-bottom: 1rem;
+}
+
+.sobre_colombia {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.card-text h2 {
+  color: var(--color-text);
+}
+
+.card-images {
+    width: 100%;
+    overflow: hidden;
+}
+
+.track {
+    display: flex;
+    width: max-content;
+    gap: 1rem;
+    animation: scroll 18s linear infinite;
+}
+
+
+.track:hover {
+    animation-play-state: paused;
+}
+
+.card {
+    width: 400px;
+    height: 400px;
+    aspect-ratio: 16 / 9;
+    margin-right: 24px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.15);
+    position: relative;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.6);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.overlay h3 {
+  margin-bottom: 8px;
+}
+
+.overlay p {
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+
+
+.overlay button:hover {
+  background: #e6b800;
+  color: #ffffff;
+}
+
+
+.card:hover .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0);}
+    100% { transform: translateX(-648px);}
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+}
+  
+.btn {
+background: var(--color-background);
+  border: none;
+  color: var(--color-link);
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.top {
+     position: absolute;
+    left: 35px;
+    top: 33px; 
+}
+
+@media (max-width: 768px) {
+  .main {
+      flex: 1;
+  }
+    .card {
+        width: 300px;
+        height: 200px;
+    }
+
+    .overlay {
+        padding: 12px;
+    }
+    .overlay h3 {
+        font-size: 0.9rem;
+    }
+    .overlay p {
+        font-size: 0.6rem;
+    }
+}

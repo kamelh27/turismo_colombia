@@ -1,0 +1,151 @@
+.top_experiencia {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top:2rem ;
+  align-items: center;
+}
+
+.top_experiencia p {
+  color: var( --color-tex);
+  font-size: 1.2rem;
+}
+
+.top_experiencia h2 {
+  color: #582e18;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.carrusel {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    margin: 30px 0;
+    background-color:#D9CEB5;
+    border-radius: 20px;
+    
+}
+
+.slides {
+    display: flex;
+}
+
+.slide {
+  display: flex;
+  gap: 1rem;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: .3s ease all;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.slide .texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 1rem;
+  width: 170%;
+}
+
+.slide .texto h3 {
+  color: #582e18;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.slide .texto p {
+  color: #582e18;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.slide button a {
+  text-decoration: none;
+  color: var(--color-link);
+}
+
+.slide_image {
+    width: 100%;
+    height: 100%;
+}
+
+.slide_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} 
+
+.carrusel .nav {
+  position: absolute;
+  bottom: 5%;
+  left: 33%;
+  transform: translate(-50%, -50%);
+}
+
+.carrusel .nav button {
+  border: none;
+  padding: 1rem;
+  border-radius:50%;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+.slide.show_active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carrusel .nav button:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+@media (max-width: 1500px) {
+  .carrusel {
+    height: 80vh;
+  }
+  .carrusel .nav {
+    bottom:-10px;
+    left: 32%;
+  }
+
+  .carrusel .nav button {
+  padding: .8rem;
+  font-weight: 600;
+}
+}
+
+@media (max-width: 768px) {
+  .carrusel {
+    height: 50vh;
+  }
+
+  .slide .texto h3 {
+    font-size: 1.2rem;
+  }
+
+  .slide .texto p {
+    font-size: 0.9rem;
+  }
+
+  .carrusel .nav {
+    bottom: 10%;
+    left: 50%;
+  }
+}
