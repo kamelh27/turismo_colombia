@@ -221,6 +221,23 @@
 }
 
 @media ( 350px <= width <= 1200px ) {
+  .info-principal h1 {
+    font-size: 1.5rem;
+  }
+
+  .info-principal p {
+    font-size: 1rem;
+  }
+
+  .box-btn {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .box_botone button a {
+    font-size: .8rem;
+  }
+
   .grid-container  {
     display: grid;
     grid-template-columns: 1fr;
@@ -240,8 +257,12 @@
     width: 60%;
     height: 100%;
     color: var(--color-text);
-    gap: 1rem;
+    gap: .5rem;
     padding: 0;
+  }
+
+  .overlay-item {
+    gap: .5rem;
   }
    
   .wrapper-first {
@@ -257,6 +278,18 @@
     box-sizing: border-box;
   }
 
+  .overlay-first button {
+    padding: 6px 8px ;
+    font-size: .8rem;
+    margin: 0 0 5px 0;
+  }
+
+  .overlay-item button {
+    padding: 6px 8px ;
+    font-size: .8rem;
+    margin: 0 0 5px 0;
+  }
+
   .wrapper-image-first {
     width: 200px;
     height: 100%;
@@ -266,18 +299,29 @@
 
   .wrapper-image-first img {
     overflow: hidden;
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  transform-origin: center center;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform-origin: center center;
   }
   .overlay-first p { 
     overflow-y: scroll;
+    font-size: .7rem;
+    height: 80px;
   }
 
   .overlay-first h2 {
-    font-size: 1.2rem;
+    font-size: .8rem;
+  }
+  .overlay-first p {
+    font-size: .7rem;
+  }
+  .overlay-item h2 {
+    font-size: .8rem;
+  }
+  .overlay-item p {
+    font-size: .7rem;
   }
 }
 
