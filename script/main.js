@@ -1,41 +1,142 @@
-const optionsLenguage = document.querySelector(".options");
-const selectedLenguage = document.querySelector(".selected");
+import { translations } from "./translations.js";
+
+// Recuperado elementos de Dom
 const customSelect = document.querySelector(".custom-select");
+const selected = document.querySelector(".selected");
+const optionsContainer = document.querySelector(".options");
+const selectedLenguage = selected;
+
+// Seleccionar elementos del Dom
+
 const openMenu = document.querySelector(".icon-menu");
 const closeMenu = document.querySelector(".icon-close");
-const menuInicial = document.querySelector(".movil");
+const menuInicial = document.querySelector(".section.movil");
 const cards = document.querySelectorAll(".card-conteiner");
 const prevBtn = document.querySelectorAll(".prev");
 const nextBtn = document.querySelectorAll(".next");
+const slides = document.querySelectorAll(".slide");
 const btnMoverDerecha = document.querySelector(".btn-mover-derecha");
 const btnMoverIzquierda = document.querySelector(".btn-mover-izquierda");
-const slides = document.querySelectorAll(".slide");
 
-// Selección de lenguaje
-const escogerLenguage = () => {
-  optionsLenguage.classList.toggle("active");
+// Sistema de idioma
+
+let currentLanguage = localStorage.getItem("language") || "es";
+
+const changeLanguage = (lang) => {
+  currentLanguage = lang;
+  localStorage.setItem("language", lang);
+  updateContent();
+};
+
+const updateContent = () => {
+  // Traducir elementos con data-translate
+  document.querySelectorAll("[data-translate]").forEach((element) => {
+    const key = element.getAttribute("data-translate");
+    if (translations[currentLanguage][key]) {
+      element.textContent = translations[currentLanguage][key];
+    }
+  });
+  // Traducir placeholders
+  document
+    .querySelectorAll("[data-translate-placeholder]")
+    .forEach((element) => {
+      const key = element.getAttribute("data-translate-placeholder");
+      if (translations[currentLanguage][key]) {
+        element.placeholder = translations[currentLanguage][key];
+      }
+    });
+
+  // Traducir atributos alt
+  document.querySelectorAll(["[data-translate-alt]"]).forEach((element) => {
+    const key = element.getAttribute("data-translate-alt");
+    if (translations[currentLanguage][key]) {
+      element.alt = translations[currentLanguage][key];
+    }
+  });
+
+  // Traducir atributos aria-label
+  document.querySelectorAll(["data-translate-aria"]).forEach((element) => {
+    const key = element.getAttribute("data-translate-aria");
+    if (translations[currentLanguage][key]) {
+      element.setAttribute("aria-label", translations[currentLanguage][key]);
+    }
+  });
+
+  document.documentElement.lang = currentLanguage;
+  document.body.className = document.body.className.replace(/lang-\w+/g, "");
+  document.body.classList.add(`lang-${currentLanguage}`);
+};
+
+// Selector de idioma
+
+const toggleLanguageSelector = () => {
   customSelect.classList.toggle("active");
-  const options = optionsLenguage.querySelectorAll("div");
-  const selectedImg = selectedLenguage.querySelector("img");
+  optionsContainer.classList.toggle("active");
+};
+
+const escogerLenguage = () => {
+  toggleLanguageSelector();
+};
+
+const initLanguageSelector = () => {
+  const options = optionsContainer.querySelectorAll("div[data-value]");
+  const selectedImg = selected.querySelector("img.spanish, img.english");
+
+  // Cargar idioma guardado al inicio
+  const savedLang = localStorage.getItem("language");
+  if (savedLang) {
+    const savedOption = optionsContainer.querySelector(
+      `[data-value="${savedLang}"]`
+    );
+    if (savedOption && selectedImg) {
+      const newImg = savedOption.querySelector("img");
+      selectedImg.src = newImg.src;
+      selectedImg.alt = newImg.alt;
+      selectedImg.className = newImg.className;
+    }
+  }
+
+  // Evento para cada opción
 
   options.forEach((option) => {
-    option.addEventListener("click", () => {
-      selectedImg.src = option.querySelector("img").src;
-      selectedImg.alt = option.querySelector("img").alt;
-      optionsLenguage.classList.remove("active");
+    option.addEventListener("click", (e) => {
+      e.stopPropagation();
+
+      const newImg = option.querySelector("img");
+      const selectedLang = option.getAttribute("data-value");
+
+      if (selectedImg && newImg) {
+        selectedImg.src = newImg.src;
+        selectedImg.alt = newImg.alt;
+        selectedImg.className = newImg.className;
+      }
+
+      if (selectedLang) {
+        changeLanguage(selectedLang);
+      }
+
       customSelect.classList.remove("active");
+      optionsContainer.classList.remove("active");
     });
   });
 };
 
+// Cerrar selector al hacer clic fuera
+
+document.addEventListener("click", (e) => {
+  if (customSelect && !customSelect.contains(e.target)) {
+    customSelect.classList.remove("active");
+    optionsContainer.classList.remove("active");
+  }
+});
+
 // Menu movil
+
 const menuOpen = () => {
-  openMenu !== "clicked"
-    ? menuInicial.classList.toggle("active")
-    : menuInicial.classList.remove("active");
+  menuInicial.classList.toggle("active");
 };
 
-// Carrusel sobre Colombia cambiar de cards
+// Currusel sobre colombia cambiar de cards
 
 let index = 0;
 
@@ -58,26 +159,32 @@ nextBtn.forEach((btn) => {
   });
 });
 
-// Carrusel top experencias en colombia
-
+// Carruesel top experiencias en Colombia
 let slideIndex = 0;
-const moverAderecha = (newIndex) => {
-  console.log("hola");
+
+const moverDerecha = (newIndex) => {
   slides.forEach((slide) => slide.classList.remove("show_active"));
   slides[newIndex].classList.add("show_active");
 };
 
+// Event Listeners
 selectedLenguage.addEventListener("click", escogerLenguage);
 openMenu.addEventListener("click", menuOpen);
 closeMenu.addEventListener("click", menuOpen);
 
 btnMoverDerecha.addEventListener("click", () => {
-  console.log(slides);
   slideIndex = (slideIndex - 1 + slides.length) % slides.length;
-  moverAderecha(slideIndex);
+  moverDerecha(slideIndex);
 });
 
 btnMoverIzquierda.addEventListener("click", () => {
   slideIndex = (slideIndex + 1) % slides.length;
-  moverAderecha(slideIndex);
+  moverDerecha(slideIndex);
+});
+
+// Inicialización
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateContent();
+  initLanguageSelector();
 });
