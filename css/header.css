@@ -125,6 +125,49 @@
 
 
 
+/* Selector de idioma móvil */
+.language-selector-mobile {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+    border-color: #8B4513;
+    background: #f5f5f5;
+}
+
+.lang-btn.active {
+    border-color: #FFD700;
+    background: #8B4513;
+    color: white;
+}
+
+.lang-btn img {
+    width: 24px;
+    height: 24px;
+}
+
+.lang-btn span {
+    font-weight: 500;
+}
+
+
+
 @media (max-width: 930px) {
      .section {
       display: none;
@@ -177,5 +220,22 @@
       cursor: pointer;
       background-color: var(--color-primary);
     }
+
+    /* .custom-select {
+      margin-top: 16px;
+      cursor: none;
+    }
+
+    .custom-select .selected  {
+      cursor: pointer;
+    }
+
+    .custom-select .options {
+      display: flex;
+      position: relative;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    } */
     
 }

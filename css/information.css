@@ -150,6 +150,28 @@
   background-color:rgba(46, 66, 83, 0.8)
 }
 
+/* Estilo para botón activo */
+
+.box_botone.active {
+    border-radius: 50px;
+    padding: 0.5rem;
+    background-color: #8B4513; /* Color más oscuro */
+    border: 1px solid #FFD700; /* Borde dorado */
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4);
+}
+
+.box_botone.active button a,
+.box_botone button.active a {
+    color: #FFD700;
+    font-weight: bold;
+}
+
+/* Animación suave */
+.box_botone button {
+    transition: all 0.3s ease;
+}
+
 @media (max-width: 768px) {
 
     .card-history {
