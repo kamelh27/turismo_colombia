@@ -23,7 +23,7 @@ let currentLanguage = localStorage.getItem("language") || "es";
 
 const loadTranslations = async () => {
   try {
-    const response = await fetch("../translations.json");
+    const response = await fetch("./translations.json");
     if (!response.ok) {
       throw new Error(`Error al cargar traducciones: ${response.status}`);
     }
