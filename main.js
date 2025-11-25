@@ -23,7 +23,9 @@ let currentLanguage = localStorage.getItem("language") || "es";
 
 const loadTranslations = async () => {
   try {
-    const response = await fetch("/translations.json");
+    const basePath = window.location.origin + "/TURISMO_COLOMBIA";
+    const response = await fetch(`${basePath}/translations.json`);
+
     if (!response.ok) {
       throw new Error(`Error al cargar traducciones: ${response.status}`);
     }
