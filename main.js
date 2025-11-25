@@ -23,9 +23,42 @@ let currentLanguage = localStorage.getItem("language") || "es";
 
 const loadTranslations = async () => {
   try {
-    const basePath = window.location.origin + "/TURISMO_COLOMBIA";
-    const response = await fetch(`${basePath}/translations.json`);
+    // Detectar la ruta base del proyecto
+    const pathSegments = window.location.pathname.split("/").filter(Boolean);
 
+    // Si estamos en GitHub Pages, el primer segmento es el nombre del repo
+    // Ejemplo: /TURISMO_COLOMBIA/page/cultura.html
+    const isGithubPages =
+      pathSegments.length > 0 && pathSegments[0] !== "index.html";
+    const projectName = isGithubPages ? pathSegments[0] : "";
+
+    // Determinar si estamos en subcarpeta
+    const isInPageFolder = window.location.pathname.includes("/page/");
+
+    // Construir la ruta correcta
+    let jsonPath;
+    if (
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1"
+    ) {
+      // En local
+      jsonPath = isInPageFolder
+        ? "../translations.json"
+        : "./translations.json";
+    } else {
+      // En GitHub Pages - usar ruta absoluta
+      if (isInPageFolder) {
+        jsonPath = `/${projectName}/translations.json`;
+      } else {
+        jsonPath = `/${projectName}/translations.json`;
+      }
+    }
+
+    console.log("📂 Intentando cargar desde:", jsonPath);
+    console.log("🌍 Hostname:", window.location.hostname);
+    console.log("📍 Pathname:", window.location.pathname);
+
+    const response = await fetch(jsonPath);
     if (!response.ok) {
       throw new Error(`Error al cargar traducciones: ${response.status}`);
     }
